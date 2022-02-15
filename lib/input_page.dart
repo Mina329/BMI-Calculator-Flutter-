@@ -2,15 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'reusable_card.dart';
 import 'type_icon.dart';
+import 'constants.dart';
 
-const bottombuttoncolor =Color(0xFFEB1555) ;
-const activebuttoncolor = Color(0xFF1D1E33);
-const inactivebuttoncolor =Color(0xFF111328);
-const BottomContainerHeight = 80.0;
-enum Gender {
-  Male,
-  Female
-}
+enum Gender { Male, Female }
 
 class InputPage extends StatefulWidget {
   @override
@@ -18,10 +12,8 @@ class InputPage extends StatefulWidget {
 }
 
 class _State extends State<InputPage> {
-
-
-  Gender? selectedGender ;
-
+  Gender? selectedGender;
+  int height = 160 ;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,18 +23,21 @@ class _State extends State<InputPage> {
         ),
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
             child: Row(
               children: [
                 Expanded(
                   child: ReusableCard(
-                    onPress: (){
+                    onPress: () {
                       setState(() {
-                        selectedGender =Gender.Male;
+                        selectedGender = Gender.Male;
                       });
                     },
-                    colour: selectedGender == Gender.Male ? activebuttoncolor : inactivebuttoncolor,
+                    colour: selectedGender == Gender.Male
+                        ? kActivebuttoncolor
+                        : kInactivebuttoncolor,
                     Child: TypeFormat(
                       iconn: FontAwesomeIcons.mars,
                       type: 'MALE',
@@ -51,12 +46,14 @@ class _State extends State<InputPage> {
                 ),
                 Expanded(
                   child: ReusableCard(
-                    onPress: (){
+                    onPress: () {
                       setState(() {
                         selectedGender = Gender.Female;
                       });
                     },
-                    colour: selectedGender == Gender.Female ? activebuttoncolor : inactivebuttoncolor,
+                    colour: selectedGender == Gender.Female
+                        ? kActivebuttoncolor
+                        : kInactivebuttoncolor,
                     Child: TypeFormat(
                       iconn: FontAwesomeIcons.venus,
                       type: 'FEMALE',
@@ -67,23 +64,63 @@ class _State extends State<InputPage> {
             ),
           ),
           Expanded(
-            child: ReusableCard(colour: inactivebuttoncolor),
+            child: ReusableCard(
+              colour: kInactivebuttoncolor,
+              Child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Center(
+                    child: Text(
+                      "HEIGHT",
+                      style: kLabelTextStyle,
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    textBaseline: TextBaseline.alphabetic,
+                    children: [
+                      Text(
+                        height.toString(),
+                        style: kNumberStyle,
+                      ),
+                      Text(
+                        'cm',
+                        style: kLabelTextStyle,
+                      ),
+                    ],
+                  ),
+                  Slider(
+                    value: height.toDouble(),
+                    activeColor: kBottombuttoncolor,
+                    inactiveColor: Color(0xFF8D8E98),
+                    min: 50.0,
+                    max: 250.0,
+                    onChanged: (double d){
+                      setState(() {
+                        height = d.round();
+                      });
+                    },
+                  ),
+                ],
+              ),
+            ),
           ),
           Expanded(
             child: Row(
               children: [
                 Expanded(
-                  child: ReusableCard(colour: inactivebuttoncolor),
+                  child: ReusableCard(colour: kInactivebuttoncolor),
                 ),
                 Expanded(
-                  child: ReusableCard(colour: inactivebuttoncolor),
+                  child: ReusableCard(colour: kInactivebuttoncolor),
                 ),
               ],
             ),
           ),
           Container(
-            color: bottombuttoncolor,
-            height: BottomContainerHeight,
+            color: kBottombuttoncolor,
+            height: kBottomContainerHeight,
             margin: EdgeInsets.only(top: 10.0),
           ),
         ],
