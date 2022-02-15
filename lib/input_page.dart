@@ -7,6 +7,10 @@ const bottombuttoncolor =Color(0xFFEB1555) ;
 const activebuttoncolor = Color(0xFF1D1E33);
 const inactivebuttoncolor =Color(0xFF111328);
 const BottomContainerHeight = 80.0;
+enum Gender {
+  Male,
+  Female
+}
 
 class InputPage extends StatefulWidget {
   @override
@@ -15,25 +19,8 @@ class InputPage extends StatefulWidget {
 
 class _State extends State<InputPage> {
 
-  void updatebottomcolor(int gender){
-    if(gender == 1){
-      if(malebottom == inactivebuttoncolor){
-        malebottom = activebuttoncolor;
-        femalebottom = inactivebuttoncolor;
-      }else{
-        malebottom = inactivebuttoncolor;
-      }
-    }else if (gender == 2){
-      if(femalebottom == inactivebuttoncolor){
-        femalebottom = activebuttoncolor;
-        malebottom = inactivebuttoncolor;
-      }else{
-        femalebottom = inactivebuttoncolor;
-      }
-    }
-  }
-  Color malebottom =inactivebuttoncolor;
-  Color femalebottom = inactivebuttoncolor;
+
+  Gender? selectedGender ;
 
   @override
   Widget build(BuildContext context) {
@@ -52,11 +39,11 @@ class _State extends State<InputPage> {
                   child: GestureDetector(
                     onTap: (){
                       setState(() {
-                        updatebottomcolor(1);
+                        selectedGender = Gender.Male;
                       });
                     },
                     child: ReusableCard(
-                      colour: malebottom,
+                      colour: selectedGender == Gender.Male ? activebuttoncolor : inactivebuttoncolor,
                       Child: TypeFormat(
                         iconn: FontAwesomeIcons.mars,
                         type: 'MALE',
@@ -68,11 +55,11 @@ class _State extends State<InputPage> {
                   child: GestureDetector(
                     onTap: (){
                       setState(() {
-                        updatebottomcolor(2);
+                        selectedGender = Gender.Female;
                       });
                     },
                     child: ReusableCard(
-                      colour: femalebottom,
+                      colour: selectedGender == Gender.Female ? activebuttoncolor : inactivebuttoncolor,
                       Child: TypeFormat(
                         iconn: FontAwesomeIcons.venus,
                         type: 'FEMALE',
