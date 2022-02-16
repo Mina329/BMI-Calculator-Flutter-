@@ -3,8 +3,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'reusable_card.dart';
 import 'type_icon.dart';
 import 'constants.dart';
+import 'RoundActionButton.dart';
 
 enum Gender { Male, Female }
+
 
 class InputPage extends StatefulWidget {
   @override
@@ -13,7 +15,10 @@ class InputPage extends StatefulWidget {
 
 class _State extends State<InputPage> {
   Gender? selectedGender;
-  int height = 160 ;
+  int height = 160;
+  int weight = 60;
+  int age = 20;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -93,10 +98,10 @@ class _State extends State<InputPage> {
                   Slider(
                     value: height.toDouble(),
                     activeColor: kBottombuttoncolor,
-                    inactiveColor: Color(0xFF8D8E98),
+                    inactiveColor: kTextColor,
                     min: 50.0,
                     max: 250.0,
-                    onChanged: (double d){
+                    onChanged: (double d) {
                       setState(() {
                         height = d.round();
                       });
@@ -110,10 +115,51 @@ class _State extends State<InputPage> {
             child: Row(
               children: [
                 Expanded(
-                  child: ReusableCard(colour: kInactivebuttoncolor),
+                  child: ReusableCard(
+                    colour: kInactivebuttoncolor,
+                    Child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'WEIGHT',
+                          style: kLabelTextStyle,
+                        ),
+                        Text(
+                          weight.toString(),
+                          style: kNumberStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundActionButton(
+                              icon: FontAwesomeIcons.minus,
+                              onPressed: (){
+                                setState(() {
+                                  weight--;
+                                });
+                              },
+                            ),
+                            SizedBox(
+                              width: 20.0,
+                            ),
+                            RoundActionButton(
+                              icon: FontAwesomeIcons.plus,
+                              onPressed: (){
+                                setState(() {
+                                  weight++;
+                                });
+                              },
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
                 Expanded(
-                  child: ReusableCard(colour: kInactivebuttoncolor),
+                  child: ReusableCard(
+                    colour: kInactivebuttoncolor,
+                  ),
                 ),
               ],
             ),
