@@ -158,52 +158,60 @@ class _State extends State<InputPage> {
                 Expanded(
                   child: ReusableCard(
                     colour: kInactivebuttoncolor,
-                    Child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'AGE',
-                          style: kLabelTextStyle,
-                        ),
-                        Text(
-                          age.toString(),
-                          style: kNumberStyle,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            RoundActionButton(
-                              icon: FontAwesomeIcons.minus,
-                              onPressed: () {
-                                setState(() {
-                                  age--;
-                                });
-                              },
-                            ),
-                            SizedBox(
-                              width: 20.0,
-                            ),
-                            RoundActionButton(
-                              icon: FontAwesomeIcons.plus,
-                              onPressed: () {
-                                setState(() {
-                                  age++;
-                                });
-                              },
-                            )
-                          ],
-                        ),
-                      ],
+                    Child: Container(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'AGE',
+                            style: kLabelTextStyle,
+                          ),
+                          Text(
+                            age.toString(),
+                            style: kNumberStyle,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              RoundActionButton(
+                                icon: FontAwesomeIcons.minus,
+                                onPressed: () {
+                                  setState(() {
+                                    age--;
+                                  });
+                                },
+                              ),
+                              SizedBox(
+                                width: 20.0,
+                              ),
+                              RoundActionButton(
+                                icon: FontAwesomeIcons.plus,
+                                onPressed: () {
+                                  setState(() {
+                                    age++;
+                                  });
+                                },
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ],
             ),
           ),
-          Container(
-            color: kBottombuttoncolor,
-            height: kBottomContainerHeight,
-            margin: EdgeInsets.only(top: 10.0),
+          GestureDetector(
+            onTap: (){
+              Navigator.pushNamed(context, '/Result');
+            },
+            child: Container(
+              child: Center(child: Text('CALCULATE',style: kNumberStyle,),),
+              color: kBottombuttoncolor,
+              height: kBottomContainerHeight,
+              margin: EdgeInsets.only(top: 10.0),
+            ),
           ),
         ],
       ),
