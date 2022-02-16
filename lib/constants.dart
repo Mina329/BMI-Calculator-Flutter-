@@ -12,7 +12,21 @@ const kLabelTextStyle =TextStyle(
   color: kTextColor,
 );
 
+
 const kNumberStyle =TextStyle(
   fontSize: 50.0,
   fontWeight: FontWeight.w900,
+);
+const kBMIResult =TextStyle(
+  fontSize: 100.0,
+  fontWeight: FontWeight.bold,
+);
+const kLargeTextStyle =TextStyle(
+  fontSize: 30.0,
+  fontWeight: FontWeight.bold,
+);
+const kGreenTextStyle = TextStyle(
+  fontSize: 25.0,
+  fontWeight: FontWeight.bold,
+  color: Colors.green,
 );
