@@ -7,7 +7,6 @@ import 'RoundActionButton.dart';
 
 enum Gender { Male, Female }
 
-
 class InputPage extends StatefulWidget {
   @override
   _State createState() => _State();
@@ -133,7 +132,7 @@ class _State extends State<InputPage> {
                           children: [
                             RoundActionButton(
                               icon: FontAwesomeIcons.minus,
-                              onPressed: (){
+                              onPressed: () {
                                 setState(() {
                                   weight--;
                                 });
@@ -144,7 +143,7 @@ class _State extends State<InputPage> {
                             ),
                             RoundActionButton(
                               icon: FontAwesomeIcons.plus,
-                              onPressed: (){
+                              onPressed: () {
                                 setState(() {
                                   weight++;
                                 });
@@ -159,6 +158,43 @@ class _State extends State<InputPage> {
                 Expanded(
                   child: ReusableCard(
                     colour: kInactivebuttoncolor,
+                    Child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'AGE',
+                          style: kLabelTextStyle,
+                        ),
+                        Text(
+                          age.toString(),
+                          style: kNumberStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundActionButton(
+                              icon: FontAwesomeIcons.minus,
+                              onPressed: () {
+                                setState(() {
+                                  age--;
+                                });
+                              },
+                            ),
+                            SizedBox(
+                              width: 20.0,
+                            ),
+                            RoundActionButton(
+                              icon: FontAwesomeIcons.plus,
+                              onPressed: () {
+                                setState(() {
+                                  age++;
+                                });
+                              },
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
