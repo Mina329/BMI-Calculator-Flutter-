@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/ResultPage.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'reusable_card.dart';
@@ -5,6 +6,7 @@ import 'type_icon.dart';
 import 'constants.dart';
 import 'RoundActionButton.dart';
 import 'BottomButton.dart';
+import 'Brain.dart';
 
 enum Gender { Male, Female }
 
@@ -205,8 +207,18 @@ class _State extends State<InputPage> {
           ),
           BottomButton(
             text: 'CALCULATE',
-            onTap: (){
-              Navigator.pushNamed(context, '/Result');
+            onTap: () {
+              Brain calc = Brain(weight: weight, height: height);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ResultPage(
+                    bme: calc.BmiCalc(),
+                    getdescription: calc.GetDescription(),
+                    getresult: calc.GetResult(),
+                  ),
+                ),
+              );
             },
           ),
         ],

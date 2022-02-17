@@ -5,6 +5,10 @@ import 'reusable_card.dart';
 import 'BottomButton.dart';
 
 class ResultPage extends StatelessWidget {
+  final String bme ;
+  final String getresult ;
+  final String getdescription;
+  ResultPage({ required this.bme , required this.getresult , required this.getdescription});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,15 +36,15 @@ class ResultPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    'OVERWEIGHT',
+                    getresult,
                     style: kGreenTextStyle,
                   ),
                   Text(
-                    '25',
+                    bme,
                     style: kBMIResult,
                   ),
                   Text(
-                    'This is a normal',
+                    getdescription,
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 20.0),
                   ),
